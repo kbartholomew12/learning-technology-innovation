@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scaling a Learning Model Without Losing Quality</title>
+<style>
+:root{--cream:#f7f1e7;--paper:#fffdf8;--ink:#183837;--body:#2f302d;--muted:#6d6b63;--gold:#c89535;--sage:#dfe3d3;--teal:#0f4745;--line:#d9cdbd;--shadow:0 10px 26px rgba(55,45,35,.07);--radius:18px;--max:1180px}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--body);background:linear-gradient(180deg,#fbf8f2 0%,var(--cream) 100%);line-height:1.5}
+.page{max-width:var(--max);margin:0 auto;padding:34px 28px 56px}.eyebrow{color:var(--ink);font-size:.82rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.eyebrow .num{color:var(--gold);font-size:1.35rem}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;color:var(--ink);margin:0}.hero{display:grid;grid-template-columns:1.5fr .7fr;gap:34px;align-items:center;margin-bottom:26px}
+h1{font-size:clamp(3rem,6vw,5.6rem);line-height:.96;font-weight:500;letter-spacing:-.025em;margin:12px 0 14px}h1 .gold{display:block;color:var(--gold);font-style:italic}.hero p{font-size:1.08rem;max-width:760px;margin:0}
+.hero-quote{justify-self:end;max-width:310px}.hero-mark{width:130px;height:130px;border-radius:50%;margin:0 0 16px auto;display:grid;place-items:center;background:radial-gradient(circle,#f2f2e8 0 58%,#e1e4d7 59% 100%);border:2px solid var(--gold);box-shadow:inset 0 0 0 8px #fffaf1;color:var(--ink);font-size:3.2rem}
+.quote{font-size:1.02rem;color:var(--ink);font-weight:700}.quote:before{content:'“';color:var(--gold);font-size:2rem;margin-right:4px}.quote-source{font-size:.86rem;color:var(--muted);font-style:italic;text-align:right;margin-top:6px}
+.panel{background:rgba(255,253,248,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.challenge{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:26px;margin-bottom:20px}.section-label{font-family:Georgia,'Times New Roman',serif;color:var(--ink);font-size:1.45rem;font-weight:700}.subgold{color:var(--gold);font-style:italic;font-weight:700;margin-top:2px}
+.challenge-left{display:grid;grid-template-columns:95px 1fr;gap:20px}.round-icon{width:82px;height:82px;border-radius:50%;background:var(--teal);color:var(--gold);display:grid;place-items:center;font-size:2.4rem}
+.start{border-left:1px solid var(--line);padding-left:28px}.start-title{color:var(--ink);text-align:center;font-weight:800;letter-spacing:.04em;margin-bottom:12px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{text-align:center;padding:6px}
+.metric .icon{width:64px;height:64px;border-radius:50%;background:var(--sage);display:grid;place-items:center;margin:0 auto 8px;font-size:1.8rem;color:var(--ink)}.metric .big{font-family:Georgia,'Times New Roman',serif;color:var(--ink);font-size:2rem;line-height:1}.metric .small{font-weight:800;color:var(--ink);font-size:.82rem;line-height:1.2;margin-top:6px}
+.system{padding:24px;margin-bottom:20px}.title-row{display:flex;align-items:center;gap:18px;justify-content:center;margin-bottom:6px}.title-row:before,.title-row:after{content:'';height:1px;width:150px;background:linear-gradient(90deg,transparent,var(--gold))}.title-row:after{background:linear-gradient(90deg,var(--gold),transparent)}.title-row h2{font-size:1.6rem}.system-intro{text-align:center;margin:0 auto 16px;max-width:850px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:#fff;border:1px solid #e7ded2;border-radius:14px;padding:15px;display:grid;grid-template-columns:64px 1fr;gap:14px;min-height:145px}.card-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(145deg,#aab29c,#e5e6d9);color:var(--ink);display:grid;place-items:center;font-size:1.6rem}.card h3{font-family:Arial,Helvetica,sans-serif;font-size:.98rem;font-weight:800;line-height:1.18;margin-bottom:6px}.card p{margin:0;font-size:.88rem}
+.role{background:linear-gradient(135deg,#0b3d3b,#0e4a47 75%,#123e3d);color:#fff;border-radius:14px;padding:22px;margin:12px 0 20px;box-shadow:var(--shadow)}.role-head{display:flex;align-items:center;gap:18px;margin-bottom:14px}.role-icon{width:74px;height:74px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:2rem;flex:0 0 auto}.role h2{color:var(--gold);font-size:1.5rem}.role .lead{font-style:italic;margin-top:3px}.role-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin:16px 0}.role-item{text-align:center;font-size:.78rem}.role-item .ri{font-size:1.4rem;color:var(--gold);margin-bottom:5px}.role p{margin:8px 0 0}
+.results{padding:24px;margin-bottom:20px}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.result{background:#fff;border:1px solid #e6ded3;border-radius:14px;padding:18px;display:grid;grid-template-columns:66px 1fr;gap:14px;align-items:center}.result .r-icon{width:60px;height:60px;border-radius:50%;background:var(--sage);display:grid;place-items:center;font-size:1.7rem}.result .number{font-family:Georgia,'Times New Roman',serif;color:var(--ink);font-size:2.3rem;line-height:1;white-space:nowrap}.arrow{color:var(--gold);padding:0 4px}.result strong{display:block;color:var(--ink);margin-top:5px}.result small{display:block;margin-top:4px;color:var(--muted)}.result-note{text-align:center;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1rem;margin:16px auto 2px;max-width:900px}
+.enterprise{padding:24px}.enterprise h2{text-align:center;font-size:1.6rem;margin-bottom:4px}.enterprise-sub{text-align:center;margin-bottom:18px}.enterprise-grid{display:grid;grid-template-columns:repeat(5,1fr)}.enterprise-item{padding:0 16px;border-right:1px solid var(--line)}.enterprise-item:last-child{border-right:none}.enterprise-item .e-icon{width:50px;height:50px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:1.25rem;margin-bottom:8px}.enterprise-item strong{color:var(--ink);display:block;line-height:1.15;margin-bottom:7px;font-size:.9rem}.enterprise-item p{font-size:.8rem;margin:0}
+@media(max-width:900px){.hero,.challenge{grid-template-columns:1fr}.hero-quote{justify-self:start;max-width:none}.hero-mark{margin-left:0}.start{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:22px}.cards{grid-template-columns:1fr 1fr}.role-grid{grid-template-columns:repeat(4,1fr)}.result-grid{grid-template-columns:1fr}.enterprise-grid{grid-template-columns:1fr 1fr}.enterprise-item{border-right:none;border-bottom:1px solid var(--line);padding:14px 0}}
+@media(max-width:600px){.page{padding:22px 16px 40px}h1{font-size:3.2rem}.challenge-left{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.role-grid{grid-template-columns:repeat(2,1fr)}.enterprise-grid{grid-template-columns:1fr}.title-row:before,.title-row:after{width:40px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div>
+<div class="eyebrow">CASE STUDY <span class="num">02</span></div>
+<h1>Scaling a Learning Model <span class="gold">Without Losing Quality</span></h1>
+<p>How I built the learning infrastructure, faculty systems, and operating processes that supported growth from 4 sections on one campus to more than 70 sections across five campuses.</p>
+</div>
+<aside class="hero-quote"><div class="hero-mark">🌱</div><div class="quote">Growth should expand opportunity—not create inconsistency.</div><div class="quote-source">— My approach to scalable learning</div></aside>
+</section>
+
+<section class="panel challenge">
+<div class="challenge-left"><div class="round-icon">⚑</div><div><div class="section-label">THE CHALLENGE</div><div class="subgold">From local success to scalable delivery</div><p>The Nutrition discipline was growing quickly, but expansion created a risk: as more sections, campuses, and faculty were added, the learner experience could become increasingly inconsistent.</p><p>The challenge was not simply to add more classes. It was to build a model that could scale while maintaining quality, supporting new faculty, and creating a more consistent experience for students across locations and formats.</p></div></div>
+<div class="start"><div class="start-title">AT THE STARTING POINT</div><div class="metrics">
+<div class="metric"><div class="icon">▤</div><div class="big">4</div><div class="small">SECTIONS</div></div>
+<div class="metric"><div class="icon">🏢</div><div class="big">1</div><div class="small">CAMPUS</div></div>
+<div class="metric"><div class="icon">🧩</div><div class="small" style="font-size:1rem;margin-top:15px">LIMITED<br>SHARED<br>INFRASTRUCTURE</div></div>
+</div></div>
+</section>
+
+<section class="panel system">
+<div class="title-row"><h2>THE SYSTEM I BUILT</h2></div>
+<p class="system-intro">I developed the infrastructure needed to move from individual course delivery to a shared, repeatable model.</p>
+<div class="cards">
+<article class="card"><div class="card-icon">🖥</div><div><h3>SHARED COURSE ARCHITECTURE</h3><p>Standardized digital course shells with consistent navigation, learning pathways, and core resources.</p></div></article>
+<article class="card"><div class="card-icon">👥</div><div><h3>FACULTY ONBOARDING &amp; MENTORING</h3><p>Structured systems to help new faculty understand expectations, course design, instructional practices, and available support.</p></div></article>
+<article class="card"><div class="card-icon">📖</div><div><h3>COMMON LEARNING RESOURCES</h3><p>Reusable content, assessments, rubrics, and implementation resources that reduced reinvention.</p></div></article>
+<article class="card"><div class="card-icon">✓</div><div><h3>QUALITY &amp; GOVERNANCE</h3><p>Shared expectations that supported consistency while preserving appropriate faculty judgment.</p></div></article>
+<article class="card"><div class="card-icon">🏙</div><div><h3>CROSS-CAMPUS PLANNING</h3><p>Enrollment forecasting, scheduling, faculty recruitment, and coordination across multiple campuses.</p></div></article>
+<article class="card"><div class="card-icon">📈</div><div><h3>CONTINUOUS IMPROVEMENT</h3><p>Course performance and learner outcomes were reviewed regularly to identify opportunities for redesign and improvement.</p></div></article>
+</div>
+</section>
+
+<section class="role">
+<div class="role-head"><div class="role-icon">✦</div><div><h2>MY ROLE IN THE TRANSFORMATION</h2><div class="lead">I led the strategy and operating model behind the scale.</div></div></div>
+<div class="role-grid">
+<div class="role-item"><div class="ri">💡</div>Strategy &amp;<br>Planning</div>
+<div class="role-item"><div class="ri">🧩</div>Learning<br>Architecture</div>
+<div class="role-item"><div class="ri">👥</div>Faculty Recruitment<br>&amp; Onboarding</div>
+<div class="role-item"><div class="ri">🏢</div>Cross-Campus<br>Implementation</div>
+<div class="role-item"><div class="ri">🖥</div>Digital Course<br>Design</div>
+<div class="role-item"><div class="ri">✓</div>Quality<br>Standards</div>
+<div class="role-item"><div class="ri">📊</div>Outcome<br>Assessment</div>
+<div class="role-item"><div class="ri">⟳</div>Continuous<br>Improvement</div>
+</div>
+<p>The growth of the discipline was not the result of a single course redesign. It required connecting learning design, workforce development, operational planning, technology, and quality systems into one <span style="color:var(--gold);font-weight:700">scalable model</span>.</p>
+</section>
+
+<section class="panel results">
+<div class="title-row"><h2>THE RESULT</h2></div>
+<div class="result-grid">
+<div class="result"><div class="r-icon">↗</div><div><div class="number">4<span class="arrow">→</span>70+</div><strong>SECTIONS</strong><small>From 4 to more than 70</small></div></div>
+<div class="result"><div class="r-icon">⌖</div><div><div class="number">1<span class="arrow">→</span>5</div><strong>CAMPUSES</strong><small>From 1 to 5 campuses</small></div></div>
+<div class="result"><div class="r-icon">✺</div><div><div class="number">67%<span class="arrow">→</span>83–91%</div><strong>AVERAGE SUCCESS</strong><small>Improved across delivery formats</small></div></div>
+</div>
+<div class="result-note">The standardized introductory Nutrition model supported rapid growth while creating a more consistent learner experience across instructors, campuses, and delivery formats.</div>
+</section>
+
+<section class="panel enterprise">
+<h2>WHY THIS MATTERS AT ENTERPRISE SCALE</h2>
+<div class="enterprise-sub">This work reflects the same capabilities needed in enterprise learning environments.</div>
+<div class="enterprise-grid">
+<div class="enterprise-item"><div class="e-icon">⌘</div><strong>DESIGNING FOR SCALE</strong><p>Creating reusable systems rather than one-time solutions.</p></div>
+<div class="enterprise-item"><div class="e-icon">👥</div><strong>ENABLING THE WORKFORCE</strong><p>Giving professionals the tools, guidance, and support needed to adopt a shared model.</p></div>
+<div class="enterprise-item"><div class="e-icon">⚖</div><strong>BALANCING GOVERNANCE AND FLEXIBILITY</strong><p>Creating consistency without eliminating professional judgment.</p></div>
+<div class="enterprise-item"><div class="e-icon">◔</div><strong>USING DATA TO IMPROVE THE SYSTEM</strong><p>Measuring outcomes and refining the learning experience over time.</p></div>
+<div class="enterprise-item"><div class="e-icon">🤝</div><strong>LEADING ACROSS BOUNDARIES</strong><p>Coordinating people, technology, learning design, and operations across multiple locations.</p></div>
+</div>
+</section>
+</main>
+</body>
+</html>
