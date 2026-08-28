@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knowledge Support & Workflow Redesign | Kristin Bartholomew</title>
+<meta name="description" content="Case study on onboarding, Microsoft Teams workflows, faculty operations, and process automation by Kristin Bartholomew, EdD, RDN.">
+<style>
+:root{
+  --cream:#f7f1e7;
+  --paper:#fffdf8;
+  --ink:#183837;
+  --body:#2f302d;
+  --muted:#6d6b63;
+  --gold:#c89535;
+  --sage:#dfe3d3;
+  --teal:#0f4745;
+  --navy:#173342;
+  --line:#d9cdbd;
+  --shadow:0 12px 30px rgba(55,45,35,.07);
+  --radius:20px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--body);
+  background:linear-gradient(180deg,#fbf8f2 0%,var(--cream) 100%);
+  line-height:1.55;
+}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,241,231,.95);
+  border-bottom:1px solid rgba(217,205,189,.8);
+  backdrop-filter:blur(10px);
+}
+.nav{
+  min-height:68px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px
+}
+.brand{
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--ink);font-size:1.05rem;font-weight:700;text-decoration:none
+}
+.back{
+  text-decoration:none;color:var(--teal);font-size:.9rem;font-weight:800
+}
+.hero{padding:54px 0 30px}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:42px;
+  align-items:center
+}
+.eyebrow{
+  color:var(--teal);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase
+}
+.eyebrow .num{color:var(--gold);font-size:1.25rem}
+h1,h2,h3{margin:0;color:var(--ink)}
+h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(3rem,6vw,5.1rem);
+  line-height:.98;
+  font-weight:500;
+  letter-spacing:-.025em;
+  margin:12px 0 16px
+}
+h1 .gold{display:block;color:var(--gold);font-style:italic}
+.lede{font-size:1.1rem;max-width:790px;margin:0;color:#4c4d48}
+.hero-quote{
+  border-left:3px solid var(--gold);
+  padding-left:18px;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--ink);
+  font-size:1.08rem;
+  font-style:italic
+}
+.hero-quote strong{
+  display:block;
+  margin-top:9px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.8rem;
+  font-style:normal;
+  color:var(--muted);
+  letter-spacing:.04em
+}
+.section{padding:26px 0}
+.panel{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow)
+}
+.overview{
+  padding:28px;
+}
+.center-head{text-align:center;margin-bottom:20px}
+.center-head h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.8rem;
+  font-weight:600
+}
+.center-head p{margin:5px auto 0;max-width:820px;color:var(--muted)}
+.split{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.track{
+  border:1px solid #e7ded2;
+  background:#fff;
+  border-radius:16px;
+  padding:22px;
+}
+.track .num{
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--gold);
+  font-size:2.2rem;
+  line-height:1;
+  margin-bottom:10px
+}
+.track h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  margin-bottom:8px
+}
+.track p{margin:0;color:var(--muted)}
+.case{
+  padding:28px;
+}
+.case-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+}
+.section-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.65rem;
+  color:var(--ink);
+  margin-bottom:4px
+}
+.subgold{color:var(--gold);font-style:italic;font-weight:700;margin-bottom:10px}
+.case p{margin:0 0 11px}
+.side{
+  border-left:1px solid var(--line);
+  padding-left:26px
+}
+.side h3{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:14px
+}
+.side-list{display:grid;gap:10px}
+.side-item{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:11px;
+  align-items:start;
+  padding:9px 0;
+  border-top:1px solid #ece3d8
+}
+.side-item:first-child{border-top:none}
+.side-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--sage);display:grid;place-items:center
+}
+.side-item strong{display:block;color:var(--ink);font-size:.88rem}
+.side-item span{font-size:.78rem;color:var(--muted)}
+
+.workflow{
+  padding:28px;
+}
+.workflow-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:18px
+}
+.flow-step{
+  border:1px solid #e7ded2;
+  background:#fff;
+  border-radius:14px;
+  padding:16px
+}
+.flow-step .n{
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--gold);
+  font-size:1.6rem;
+  line-height:1
+}
+.flow-step h3{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.9rem;
+  font-weight:800;
+  margin:8px 0 5px
+}
+.flow-step p{font-size:.8rem;color:var(--muted);margin:0}
+
+.role{
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  color:#fff;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:var(--shadow)
+}
+.role h2{
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.8rem
+}
+.role .lead{color:#e8d3a6;font-style:italic;margin:4px 0 18px}
+.role-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px
+}
+.role-item{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;
+  padding:12px;
+  font-size:.8rem;
+  text-align:center
+}
+.role-item span{
+  display:block;color:#e8d3a6;font-size:1.2rem;margin-bottom:5px
+}
+.role p{margin:18px 0 0}
+
+.impact{
+  padding:28px;
+}
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:18px
+}
+.impact-card{
+  background:#fff;
+  border:1px solid #e7ded2;
+  border-radius:14px;
+  padding:18px
+}
+.impact-card .icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--sage);display:grid;place-items:center;margin-bottom:10px
+}
+.impact-card strong{display:block;color:var(--ink);font-size:.9rem;margin-bottom:6px}
+.impact-card p{margin:0;color:var(--muted);font-size:.81rem}
+
+.future{
+  background:linear-gradient(135deg,#fffdf8,#f5efe5);
+  padding:28px;
+}
+.future-callout{
+  border-left:4px solid var(--gold);
+  padding:4px 0 4px 18px;
+  max-width:920px
+}
+.future-callout strong{
+  display:block;
+  color:var(--ink);
+  margin-bottom:5px
+}
+.future-callout p{margin:0;color:var(--muted)}
+
+.enterprise{
+  padding:30px;
+}
+.enterprise-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+  margin-top:20px
+}
+.enterprise-item{
+  padding:0 16px;
+  border-right:1px solid var(--line)
+}
+.enterprise-item:last-child{border-right:none}
+.enterprise-item .e-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--teal);color:#fff;
+  display:grid;place-items:center;margin-bottom:9px
+}
+.enterprise-item strong{
+  display:block;color:var(--ink);font-size:.88rem;margin-bottom:6px
+}
+.enterprise-item p{margin:0;color:var(--muted);font-size:.8rem}
+
+.bottom-nav{
+  display:flex;justify-content:space-between;gap:12px;padding:26px 0 6px
+}
+.navbtn{
+  text-decoration:none;border:1px solid var(--line);background:var(--paper);
+  color:var(--ink);padding:10px 14px;border-radius:10px;font-weight:800;font-size:.88rem
+}
+.navbtn.primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+.footer{
+  padding:20px 0 46px;text-align:center;color:var(--muted);font-size:.82rem
+}
+@media(max-width:900px){
+  .hero-grid,.case-grid{grid-template-columns:1fr}
+  .side{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:22px}
+  .split{grid-template-columns:1fr}
+  .workflow-grid,.role-grid,.impact-grid{grid-template-columns:repeat(2,1fr)}
+  .enterprise-grid{grid-template-columns:1fr 1fr}
+  .enterprise-item{border-right:none;border-bottom:1px solid var(--line);padding:14px 0}
+}
+@media(max-width:650px){
+  .wrap{padding:0 16px}
+  .workflow-grid,.role-grid,.impact-grid,.enterprise-grid{grid-template-columns:1fr}
+  .bottom-nav{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">Kristin Bartholomew, EdD, RDN</a>
+    <a class="back" href="index.html">← Back to Portfolio</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">CASE STUDY <span class="num">03</span> · KNOWLEDGE SUPPORT &amp; WORKFLOW REDESIGN</div>
+      <h1>Making Information and Processes <span class="gold">Easier to Use</span></h1>
+      <p class="lede">
+        Two related improvements inside the Microsoft Teams environment: a more complete faculty onboarding guide,
+        and redesigned operational workflows that improve communication, coordination, and follow-through across the School of Science.
+      </p>
+    </div>
+    <aside class="hero-quote">
+      Better systems reduce the amount of effort people spend finding information, tracking details, and correcting avoidable errors.
+      <strong>MY APPROACH TO OPERATIONAL IMPROVEMENT</strong>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel overview">
+      <div class="center-head">
+        <h2>Two Connected Improvements</h2>
+        <p>
+          These projects solve different problems. One improves how faculty access information.
+          The other improves how leaders coordinate work and manage complex processes.
+        </p>
+      </div>
+
+      <div class="split">
+        <article class="track">
+          <div class="num">01</div>
+          <h3>Faculty Onboarding Guide</h3>
+          <p>
+            I adapted the college's existing onboarding document into a more complete, inclusive mini-manual
+            that brings together the information new faculty actually need, with direct links to relevant resources.
+          </p>
+        </article>
+
+        <article class="track">
+          <div class="num">02</div>
+          <h3>Operational Workflow Redesign</h3>
+          <p>
+            I created clearer Teams-based workflows for communication among deans, faculty management, and class observations,
+            and I am currently building an automated workflow for a complex scheduling and instructional-materials process.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel case">
+      <div class="case-grid">
+        <div>
+          <div class="section-title">Faculty Onboarding Guide</div>
+          <div class="subgold">From a basic document to a practical mini-manual</div>
+          <p>
+            Valencia already had an onboarding document. Rather than replace it, I used it as the foundation
+            and expanded it to include the broader set of information faculty need to begin working effectively.
+          </p>
+          <p>
+            The revised guide functions like a mini-manual: it brings key expectations, practical guidance,
+            and direct links to supporting resources into one place so new faculty do not have to piece together
+            critical information from multiple sources.
+          </p>
+          <p>
+            The emphasis was usability and completeness—making the existing process more useful rather than creating
+            a new system simply for the sake of change.
+          </p>
+        </div>
+
+        <aside class="side">
+          <h3>What the guide improves</h3>
+          <div class="side-list">
+            <div class="side-item"><div class="side-icon">☷</div><div><strong>Completeness</strong><span>Brings together information that was previously spread across separate resources.</span></div></div>
+            <div class="side-item"><div class="side-icon">↗</div><div><strong>Direct access</strong><span>Links faculty to the resources they need instead of only telling them what exists.</span></div></div>
+            <div class="side-item"><div class="side-icon">👋</div><div><strong>More inclusive onboarding</strong><span>Supports faculty with different levels of prior institutional knowledge and experience.</span></div></div>
+            <div class="side-item"><div class="side-icon">✓</div><div><strong>Consistency</strong><span>Creates a more reliable baseline of information for new faculty.</span></div></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel case">
+      <div class="case-grid">
+        <div>
+          <div class="section-title">Operational Workflow Redesign</div>
+          <div class="subgold">Improving coordination inside a complex academic operation</div>
+          <p>
+            A separate need involved how deans communicate and coordinate faculty-management work across the School of Science.
+            I created clearer Teams-based workflows to support department communication, faculty management, and class observations.
+          </p>
+          <p>
+            These workflows create more visible, shared processes for work that can otherwise become fragmented across emails,
+            individual tracking systems, and informal follow-up.
+          </p>
+          <p>
+            I am also currently developing a workflow to automate a particularly complicated process involving faculty schedules
+            and instructional-material information—work that traditionally requires multiple emails, repeated tracking, and follow-up.
+          </p>
+        </div>
+
+        <aside class="side">
+          <h3>Current workflow areas</h3>
+          <div class="side-list">
+            <div class="side-item"><div class="side-icon">💬</div><div><strong>Dean communication</strong><span>Shared visibility into department-level information and follow-up.</span></div></div>
+            <div class="side-item"><div class="side-icon">👥</div><div><strong>Faculty management</strong><span>More consistent coordination of recurring faculty-related work.</span></div></div>
+            <div class="side-item"><div class="side-icon">👁</div><div><strong>Class observations</strong><span>Improved organization and tracking of observation-related processes.</span></div></div>
+            <div class="side-item"><div class="side-icon">⚙</div><div><strong>Process automation</strong><span>In-progress design to reduce manual emails, tracking, and follow-ups.</span></div></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel workflow">
+      <div class="center-head">
+        <h2>The Automation in Progress</h2>
+        <p>
+          The current project focuses on a high-friction process where schedule confirmation and instructional-material information
+          must be collected accurately from multiple faculty members and then tracked through follow-up.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="flow-step">
+          <div class="n">01</div>
+          <h3>Start with Existing Data</h3>
+          <p>Use faculty schedule information already maintained by the school rather than recreating it manually.</p>
+        </article>
+
+        <article class="flow-step">
+          <div class="n">02</div>
+          <h3>Collect Structured Responses</h3>
+          <p>Give faculty a clear way to confirm assignments, identify needed changes, and provide required course information.</p>
+        </article>
+
+        <article class="flow-step">
+          <div class="n">03</div>
+          <h3>Route &amp; Track</h3>
+          <p>Reduce dependence on separate emails and manual follow-up by moving responses into a shared workflow.</p>
+        </article>
+
+        <article class="flow-step">
+          <div class="n">04</div>
+          <h3>Reduce Downstream Errors</h3>
+          <p>Improve the accuracy of schedule and instructional-material information before errors affect students, budgets, or administrative workload.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="role">
+      <h2>My Role in the Work</h2>
+      <div class="lead">I look for recurring friction, then redesign the information or workflow around how the work actually happens.</div>
+
+      <div class="role-grid">
+        <div class="role-item"><span>⌕</span>Process Analysis</div>
+        <div class="role-item"><span>☷</span>Information Design</div>
+        <div class="role-item"><span>⚙</span>Workflow Design</div>
+        <div class="role-item"><span>👥</span>Stakeholder Needs</div>
+        <div class="role-item"><span>↗</span>Adoption Support</div>
+        <div class="role-item"><span>✓</span>Error Reduction</div>
+        <div class="role-item"><span>⏱</span>Efficiency</div>
+        <div class="role-item"><span>⟳</span>Continuous Refinement</div>
+      </div>
+
+      <p>
+        The value is not the Microsoft platform itself. The value is using familiar enterprise tools to make information easier to find,
+        make responsibilities clearer, reduce unnecessary handoffs, and create more reliable processes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel impact">
+      <div class="center-head">
+        <h2>Why the Workflow Matters</h2>
+        <p>The process is administrative, but the consequences of errors are not.</p>
+      </div>
+
+      <div class="impact-grid">
+        <article class="impact-card">
+          <div class="icon">🎓</div>
+          <strong>Students</strong>
+          <p>Schedule or instructional-material errors can directly affect course access, preparation, and the student experience.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="icon">$</div>
+          <strong>Budget</strong>
+          <p>Incorrect scheduling or course information can create avoidable financial and staffing consequences.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="icon">👥</div>
+          <strong>Faculty</strong>
+          <p>Clearer processes reduce confusion, repeated requests, and unnecessary administrative burden.</p>
+        </article>
+
+        <article class="impact-card">
+          <div class="icon">⏱</div>
+          <strong>Administrative Workload</strong>
+          <p>Automation has the potential to significantly reduce manual tracking, emails, and follow-up once fully implemented.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel future">
+      <div class="future-callout">
+        <strong>Important: the automated workflow is still in development.</strong>
+        <p>
+          I am not presenting projected time savings or error reduction as completed outcomes. The case demonstrates how I approach
+          process redesign, workflow automation, stakeholder impact, and implementation planning while the solution is being built.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel enterprise">
+      <div class="center-head">
+        <h2>Why This Matters at Enterprise Scale</h2>
+        <p>
+          Enterprise learning and operations often intersect. Employees need usable knowledge, clear workflows,
+          and systems that reduce friction while improving consistency and accountability.
+        </p>
+      </div>
+
+      <div class="enterprise-grid">
+        <div class="enterprise-item">
+          <div class="e-icon">☷</div>
+          <strong>Knowledge Support</strong>
+          <p>Improving existing resources so people can find and apply what they need.</p>
+        </div>
+
+        <div class="enterprise-item">
+          <div class="e-icon">⚙</div>
+          <strong>Workflow Design</strong>
+          <p>Turning fragmented tasks into clearer, repeatable processes.</p>
+        </div>
+
+        <div class="enterprise-item">
+          <div class="e-icon">↗</div>
+          <strong>Digital Adoption</strong>
+          <p>Using familiar platforms to make new processes easier to adopt.</p>
+        </div>
+
+        <div class="enterprise-item">
+          <div class="e-icon">✓</div>
+          <strong>Risk &amp; Error Reduction</strong>
+          <p>Designing workflows with downstream stakeholder impacts in mind.</p>
+        </div>
+
+        <div class="enterprise-item">
+          <div class="e-icon">⟳</div>
+          <strong>Operational Improvement</strong>
+          <p>Reducing unnecessary administrative effort and improving reliability over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a class="navbtn" href="index.html">← Back to Portfolio</a>
+      <a class="navbtn primary" href="scaling-learning-model.html">View Case Study 02 →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">Kristin Bartholomew, EdD, RDN · Enterprise Learning Technology &amp; Innovation Portfolio</div>
+</footer>
+
+</body>
+</html>
