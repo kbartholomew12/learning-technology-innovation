@@ -88,108 +88,7 @@
       width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
     }
-/* ======================================================
-   ANCHOR + MOBILE REFINEMENTS
-======================================================= */
 
-/* Keep anchored section headings below the sticky desktop navigation */
-#work,
-#approach,
-#expertise {
-  scroll-margin-top: 95px;
-}
-
-@media (max-width: 650px) {
-
-  /* A multi-line sticky menu takes up too much phone screen space */
-  .topbar {
-    position: static;
-  }
-
-  .nav {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-    padding: 14px 0;
-  }
-
-  .brand {
-    font-size: 1rem;
-  }
-
-  .nav-links {
-    width: 100%;
-    gap: 8px 14px;
-  }
-
-  .nav-links a {
-    font-size: 0.86rem;
-  }
-
-  /* No sticky header on mobile, so anchors need less offset */
-  #work,
-  #approach,
-  #expertise {
-    scroll-margin-top: 20px;
-  }
-
-  /* Tighten hero spacing for smaller screens */
-  .hero {
-    padding: 48px 0 50px;
-  }
-
-  .hero h1 {
-    font-size: 2.25rem;
-  }
-
-  .hero-copy {
-    font-size: 1.05rem;
-  }
-
-  .hero-actions {
-    gap: 10px;
-    margin-top: 26px;
-  }
-
-  .button {
-    padding: 11px 16px;
-  }
-
-  /* Reduce excess vertical space in capability tiles */
-  .intro-item {
-    padding: 22px 20px;
-  }
-
-  /* Maintain breathing room without excessively long scrolling */
-  .section {
-    padding: 52px 0;
-  }
-
-  .section-heading {
-    margin-bottom: 28px;
-  }
-
-  /* Cards already stack correctly; refine mobile padding */
-  .case-main,
-  .case-side {
-    padding: 26px 22px;
-  }
-
-  .case-card {
-    margin-bottom: 24px;
-  }
-
-  /* Prevent long CTA labels from feeling cramped */
-  .case-link {
-    line-height: 1.45;
-  }
-
-  /* Footer navigation reads better stacked */
-  .bottom-nav-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
     /* ------------------------------
        TOP NAVIGATION
     ------------------------------ */
@@ -660,6 +559,100 @@
       .case-main,
       .case-side {
         padding: 28px 24px;
+      }
+    }
+
+    /* ======================================================
+       ANCHOR + MOBILE REFINEMENTS
+    ======================================================= */
+
+    #work,
+    #approach,
+    #expertise {
+      scroll-margin-top: 95px;
+    }
+
+    @media (max-width: 650px) {
+
+      .topbar {
+        position: static;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 8px 14px;
+      }
+
+      .nav-links a {
+        font-size: 0.86rem;
+      }
+
+      #work,
+      #approach,
+      #expertise {
+        scroll-margin-top: 20px;
+      }
+
+      .hero {
+        padding: 48px 0 50px;
+      }
+
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-copy {
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .button {
+        padding: 11px 16px;
+      }
+
+      .intro-item {
+        padding: 22px 20px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 28px;
+      }
+
+      .case-main,
+      .case-side {
+        padding: 26px 22px;
+      }
+
+      .case-card {
+        margin-bottom: 24px;
+      }
+
+      .case-link {
+        line-height: 1.45;
+      }
+
+      .bottom-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -1213,7 +1206,7 @@
         <div class="principles-grid">
 
           <div class="principle">
-            <div class="principle-symbol">⌘</div>
+            <div class="principle-symbol" aria-hidden="true">⌘</div>
             <h3>Design for Scale</h3>
             <p>
               Build reusable systems that can expand across people, locations,
@@ -1222,7 +1215,7 @@
           </div>
 
           <div class="principle">
-            <div class="principle-symbol">◎</div>
+            <div class="principle-symbol" aria-hidden="true">◎</div>
             <h3>Start with the Need</h3>
             <p>
               Determine whether the right solution is learning, information,
@@ -1231,7 +1224,7 @@
           </div>
 
           <div class="principle">
-            <div class="principle-symbol">⚖</div>
+            <div class="principle-symbol" aria-hidden="true">⚖</div>
             <h3>Balance Standards & Judgment</h3>
             <p>
               Create enough governance to protect quality without designing
@@ -1240,7 +1233,7 @@
           </div>
 
           <div class="principle">
-            <div class="principle-symbol">↗</div>
+            <div class="principle-symbol" aria-hidden="true">↗</div>
             <h3>Support Adoption</h3>
             <p>
               Pair new systems and technology with guidance, learning,
@@ -1249,7 +1242,7 @@
           </div>
 
           <div class="principle">
-            <div class="principle-symbol">◔</div>
+            <div class="principle-symbol" aria-hidden="true">◔</div>
             <h3>Measure What Changes</h3>
             <p>
               Use performance information, learning outcomes, and feedback to
@@ -1258,7 +1251,7 @@
           </div>
 
           <div class="principle">
-            <div class="principle-symbol">✦</div>
+            <div class="principle-symbol" aria-hidden="true">✦</div>
             <h3>Use Technology Intentionally</h3>
             <p>
               Adopt technology because it improves learning or performance,
