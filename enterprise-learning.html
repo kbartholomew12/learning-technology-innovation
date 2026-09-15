@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Enterprise Learning Strategy & Design | Kristin Bartholomew</title>
+
+  <meta
+    name="description"
+    content="Selected enterprise learning work by Kristin Bartholomew, EdD, RDN, including scalable learning architecture, learning governance, workforce enablement, workflow redesign, accessibility, and AI-enabled learning."
+  >
+
+  <style>
+    :root {
+      --navy: #17324d;
+      --navy-dark: #10263a;
+      --teal: #4f7d78;
+      --sage: #dbe4dc;
+      --sage-light: #edf2ed;
+      --cream: #f7f3ea;
+      --paper: #ffffff;
+      --gold: #b58a4a;
+      --ink: #24313a;
+      --muted: #61707a;
+      --line: #d9ddd8;
+      --shadow: 0 10px 28px rgba(23, 50, 77, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      line-height: 1.18;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      max-width: 900px;
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    a {
+      color: var(--teal);
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* ------------------------------
+       TOP NAVIGATION
+    ------------------------------ */
+
+    .topbar {
+      background: var(--navy-dark);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.12);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: white;
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.08rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      text-decoration: underline;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+
+    .hero {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(23, 50, 77, 0.98),
+          rgba(50, 86, 88, 0.95)
+        );
+      color: white;
+      padding: 90px 0 82px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: bold;
+      color: #e7d5ae;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      color: white;
+    }
+
+    .hero-copy {
+      max-width: 800px;
+      font-size: 1.18rem;
+      color: #edf2f4;
+      margin-bottom: 30px;
+    }
+
+    .hero-note {
+      max-width: 760px;
+      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+      color: #f5f0e7;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: white;
+      color: var(--navy);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,0.55);
+      color: white;
+    }
+
+    /* ------------------------------
+       INTRO STRIP
+    ------------------------------ */
+
+    .intro-strip {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .intro-item {
+      background: var(--paper);
+      padding: 30px 24px;
+    }
+
+    .intro-item strong {
+      display: block;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .intro-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* ------------------------------
+       SECTIONS
+    ------------------------------ */
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .section-alt {
+      background: var(--paper);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading p {
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .section-number {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* ------------------------------
+       CASE STUDY CARDS
+    ------------------------------ */
+
+    .case-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      margin-bottom: 30px;
+    }
+
+    .case-main {
+      padding: 38px;
+    }
+
+    .case-side {
+      background: var(--sage-light);
+      padding: 38px;
+      border-left: 1px solid var(--line);
+    }
+
+    .case-label {
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.76rem;
+      font-weight: bold;
+      margin-bottom: 11px;
+    }
+
+    .case-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .impact {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .impact strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      font-size: 1.35rem;
+      margin-bottom: 3px;
+    }
+
+    .impact span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+    }
+
+    .tag {
+      background: var(--sage);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .case-link {
+      display: inline-block;
+      margin-top: 23px;
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--teal);
+    }
+
+    .case-link:hover {
+      text-decoration: underline;
+    }
+
+    .side-title {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      font-size: 1.08rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .side-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .side-list li {
+      margin-bottom: 10px;
+    }
+
+    /* ------------------------------
+       PRINCIPLES
+    ------------------------------ */
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .principle {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 26px;
+    }
+
+    .principle-symbol {
+      font-size: 1.45rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .principle h3 {
+      font-size: 1.18rem;
+    }
+
+    .principle p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 0;
+    }
+
+    /* ------------------------------
+       PHILOSOPHY
+    ------------------------------ */
+
+    .philosophy {
+      background: var(--navy);
+      color: white;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .philosophy h2 {
+      color: white;
+    }
+
+    .philosophy p {
+      color: #edf2f4;
+    }
+
+    .quote {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.35;
+      color: white;
+      border-left: 4px solid var(--gold);
+      padding-left: 24px;
+      margin: 0;
+    }
+
+    /* ------------------------------
+       EXPERTISE
+    ------------------------------ */
+
+    .expertise-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .expertise-list span {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+
+    .bottom-nav {
+      background: var(--sage-light);
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+    }
+
+    .bottom-nav-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .bottom-nav a {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      background: var(--navy-dark);
+      color: #dfe7eb;
+      padding: 28px 0;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    /* ------------------------------
+       RESPONSIVE
+    ------------------------------ */
+
+    @media (max-width: 900px) {
+      .intro-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .case-card {
+        grid-template-columns: 1fr;
+      }
+
+      .case-side {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .principles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 62px 0;
+      }
+
+      .intro-grid,
+      .impact-grid,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .case-main,
+      .case-side {
+        padding: 28px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================================
+       TOP NAVIGATION
+  ======================================================= -->
+
+  <header class="topbar">
+    <div class="wrap nav">
+
+      <a class="brand" href="index.html">
+        Kristin Bartholomew, EdD, RDN
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Selected Work</a>
+        <a href="#approach">Approach</a>
+        <a href="#expertise">Expertise</a>
+        <a href="index.html">Full Portfolio</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ======================================================
+         HERO
+    ======================================================= -->
+
+    <section class="hero">
+
+      <div class="wrap">
+
+        <div class="eyebrow">
+          Enterprise Learning Strategy · Design · Innovation
+        </div>
+
+        <h1>
+          Designing learning systems that make quality easier to scale.
+        </h1>
+
+        <p class="hero-copy">
+          My work sits at the intersection of learning strategy, digital learning,
+          workforce enablement, learning governance, accessibility, and emerging
+          technology. I build systems that help people learn more consistently,
+          adopt new practices, and perform with greater confidence.
+        </p>
+
+        <p class="hero-note">
+          These selected examples show how I translate learning needs,
+          organizational priorities, data, technology, and user workflows into
+          practical, scalable solutions.
+        </p>
+
+        <div class="hero-actions">
+
+          <a class="button button-primary" href="#work">
+            Explore Selected Work
+          </a>
+
+          <a class="button button-secondary" href="index.html">
+            View Full Portfolio
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         CAPABILITY STRIP
+    ======================================================= -->
+
+    <section class="intro-strip" aria-label="Enterprise learning capabilities">
+
+      <div class="wrap intro-grid">
+
+        <div class="intro-item">
+          <strong>Design for Scale</strong>
+          <span>
+            Build reusable learning systems rather than one-time solutions.
+          </span>
+        </div>
+
+        <div class="intro-item">
+          <strong>Enable the Workforce</strong>
+          <span>
+            Give people the guidance, tools, and support needed to perform well.
+          </span>
+        </div>
+
+        <div class="intro-item">
+          <strong>Build Governance In</strong>
+          <span>
+            Create quality standards without eliminating professional judgment.
+          </span>
+        </div>
+
+        <div class="intro-item">
+          <strong>Improve with Evidence</strong>
+          <span>
+            Use outcomes, performance information, and feedback to refine systems.
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         SELECTED WORK
+    ======================================================= -->
+
+    <section class="section" id="work">
+
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <div class="section-number">
+            Selected Enterprise Learning Work
+          </div>
+
+          <h2>
+            From individual learning experiences to systems that support
+            performance at scale.
+          </h2>
+
+          <p>
+            Each project addresses a different organizational challenge:
+            scaling learning, establishing quality, supporting people in the
+            flow of work, adopting emerging technology, or improving the
+            systems surrounding learning.
+          </p>
+
+        </div>
+
+
+        <!-- CASE 1 -->
+
+        <article class="case-card">
+
+          <div class="case-main">
+
+            <div class="case-label">
+              01 · Scalable Learning Architecture
+            </div>
+
+            <h3>
+              Building consistency without losing flexibility
+            </h3>
+
+            <p>
+              I helped build the learning and operating infrastructure that
+              supported the growth of Nutrition from 4 sections on one campus
+              to more than 70 sections across five campuses.
+            </p>
+
+            <p>
+              The model connected standardized digital course architecture,
+              aligned outcomes and assessments, reusable learning resources,
+              faculty onboarding, cross-campus planning, quality expectations,
+              and ongoing improvement.
+            </p>
+
+            <p>
+              The goal was not to make every instructor identical. It was to
+              create a strong common foundation so learners received a
+              consistent, high-quality experience while faculty retained
+              appropriate professional flexibility.
+            </p>
+
+            <div class="impact-grid">
+
+              <div class="impact">
+                <strong>4 → 70+</strong>
+                <span>Sections</span>
+              </div>
+
+              <div class="impact">
+                <strong>1 → 5</strong>
+                <span>Campuses</span>
+              </div>
+
+              <div class="impact">
+                <strong>67% → 83–91%</strong>
+                <span>Average course success</span>
+              </div>
+
+              <div class="impact">
+                <strong>Scalable</strong>
+                <span>Faculty onboarding and delivery model</span>
+              </div>
+
+            </div>
+
+            <div class="tag-list">
+              <span class="tag">Learning Architecture</span>
+              <span class="tag">Learning Strategy</span>
+              <span class="tag">Workforce Enablement</span>
+              <span class="tag">Governance</span>
+              <span class="tag">Measurement</span>
+            </div>
+
+            <a class="case-link" href="scaling-learning-model.html">
+              View Scalable Learning Architecture Case Study →
+            </a>
+
+          </div>
+
+          <div class="case-side">
+
+            <div class="side-title">
+              Enterprise capabilities demonstrated
+            </div>
+
+            <ul class="side-list">
+              <li>Designing reusable learning systems</li>
+              <li>Scaling across locations and delivery formats</li>
+              <li>Aligning learning architecture with operational planning</li>
+              <li>Onboarding and supporting a distributed workforce</li>
+              <li>Balancing governance with professional flexibility</li>
+              <li>Using outcomes to drive continuous improvement</li>
+            </ul>
+
+          </div>
+
+        </article>
+
+
+        <!-- CASE 2 -->
+
+        <article class="case-card">
+
+          <div class="case-main">
+
+            <div class="case-label">
+              02 · Learning Governance & Quality
+            </div>
+
+            <h3>
+              Turning quality principles into a usable governance model
+            </h3>
+
+            <p>
+              Scalable learning requires more than strong content. It also
+              requires shared expectations for design, accessibility,
+              implementation, evaluation, and improvement.
+            </p>
+
+            <p>
+              I helped develop an institution-specific online-learning
+              framework connecting course design standards, observable
+              instructor practices, accessibility, peer and dean review,
+              faculty development, innovation, and continuous improvement.
+            </p>
+
+            <p>
+              My approach to governance is practical: establish enough
+              structure to protect quality and consistency while keeping
+              systems usable for the people expected to work within them.
+            </p>
+
+            <div class="tag-list">
+              <span class="tag">Learning Governance</span>
+              <span class="tag">Accessibility</span>
+              <span class="tag">Quality Systems</span>
+              <span class="tag">Faculty Readiness</span>
+              <span class="tag">Continuous Improvement</span>
+            </div>
+
+            <a class="case-link" href="learning-governance-quality.html">
+              View Learning Governance & Quality Case Study →
+            </a>
+
+          </div>
+
+          <div class="case-side">
+
+            <div class="side-title">
+              Areas of focus
+            </div>
+
+            <ul class="side-list">
+              <li>Learning quality standards</li>
+              <li>Instructional design expectations</li>
+              <li>Accessibility and inclusive design</li>
+              <li>Faculty readiness and certification</li>
+              <li>Peer and leadership review</li>
+              <li>Continuous improvement</li>
+            </ul>
+
+          </div>
+
+        </article>
+
+
+        <!-- CASE 3 -->
+
+        <article class="case-card">
+
+          <div class="case-main">
+
+            <div class="case-label">
+              03 · Workforce Enablement & Performance Support
+            </div>
+
+            <h3>
+              Making information and workflows easier to use
+            </h3>
+
+            <p>
+              Learning does not always need to be a course. Sometimes the
+              stronger solution is better onboarding, clearer information,
+              a more usable workflow, or support available when someone
+              actually needs it.
+            </p>
+
+            <p>
+              I redesigned faculty onboarding resources and created
+              Microsoft Teams-based workflows that support communication,
+              faculty management, class observations, scheduling, and
+              instructional-material processes across a complex academic
+              operation.
+            </p>
+
+            <p>
+              The goal is to reduce friction: make information easier to find,
+              responsibilities clearer, and recurring processes more reliable.
+            </p>
+
+            <div class="tag-list">
+              <span class="tag">Performance Support</span>
+              <span class="tag">Knowledge Management</span>
+              <span class="tag">Workflow Design</span>
+              <span class="tag">Microsoft 365</span>
+              <span class="tag">Adoption Support</span>
+            </div>
+
+            <a class="case-link" href="knowledge-workflow-redesign.html">
+              View Knowledge Support & Workflow Redesign Case Study →
+            </a>
+
+          </div>
+
+          <div class="case-side">
+
+            <div class="side-title">
+              Enterprise capabilities demonstrated
+            </div>
+
+            <ul class="side-list">
+              <li>Workforce onboarding and enablement</li>
+              <li>Knowledge and information design</li>
+              <li>Just-in-time performance support</li>
+              <li>Workflow and process analysis</li>
+              <li>Enterprise-platform adoption</li>
+              <li>Error reduction and operational improvement</li>
+            </ul>
+
+          </div>
+
+        </article>
+
+
+        <!-- CASE 4 -->
+
+        <article class="case-card">
+
+          <div class="case-main">
+
+            <div class="case-label">
+              04 · AI-Enabled Learning & Emerging Technology
+            </div>
+
+            <h3>
+              Using emerging technology where it improves learning
+            </h3>
+
+            <p>
+              I approach emerging technology with a simple question:
+              does it solve a meaningful learning problem?
+            </p>
+
+            <p>
+              My recent work includes AI-supported debate and critique,
+              individualized inquiry experiences, error-analysis activities,
+              interactive simulations, browser-based science labs, and
+              faculty-facing models for responsible AI adoption.
+            </p>
+
+            <p>
+              The technology is not the outcome. Each example begins with
+              the learning goal and uses technology only where it strengthens
+              reasoning, feedback, practice, engagement, or scalability.
+            </p>
+
+            <div class="tag-list">
+              <span class="tag">Generative AI</span>
+              <span class="tag">Agentic AI</span>
+              <span class="tag">Learning Design</span>
+              <span class="tag">Simulation</span>
+              <span class="tag">Technology Adoption</span>
+            </div>
+
+            <a
+              class="case-link"
+              href="https://kbartholomew12.github.io/academic-technology-learning-design/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View AI & Learning Design Examples ↗
+            </a>
+
+          </div>
+
+          <div class="case-side">
+
+            <div class="side-title">
+              Examples include
+            </div>
+
+            <ul class="side-list">
+              <li>AI-supported debate and argumentation</li>
+              <li>AI output critique and error analysis</li>
+              <li>Individualized inquiry and mystery scenarios</li>
+              <li>Interactive virtual laboratories</li>
+              <li>Faculty-facing adoption models</li>
+              <li>Responsible and learning-centered AI integration</li>
+            </ul>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         CROSS-FUNCTIONAL SYSTEMS THINKING
+    ======================================================= -->
+
+    <section class="section section-alt">
+
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <div class="section-number">
+            Cross-Functional Systems Thinking
+          </div>
+
+          <h2>
+            Connecting learning, technology, people, and workflow.
+          </h2>
+
+          <p>
+            Some of my most useful work happens where different functions
+            intersect.
+          </p>
+
+        </div>
+
+        <div class="case-card">
+
+          <div class="case-main">
+
+            <div class="case-label">
+              Earlier Healthcare Systems Experience
+            </div>
+
+            <h3>
+              Designing around how people actually work
+            </h3>
+
+            <p>
+              Earlier in my career at Bayfront Medical Center, I coordinated
+              development and implementation of a hospital-wide computerized
+              tray-ticket system.
+            </p>
+
+            <p>
+              I partnered with chefs, dietary staff, and clinicians to align
+              tray-ticket system design with clinical requirements and kitchen
+              workflow.
+            </p>
+
+            <p>
+              That experience reinforced an approach I still use today:
+              understand the people, processes, and requirements surrounding
+              a problem before designing the solution.
+            </p>
+
+          </div>
+
+          <div class="case-side">
+
+            <div class="side-title">
+              The same systems mindset now informs my work in
+            </div>
+
+            <ul class="side-list">
+              <li>Learning architecture</li>
+              <li>Digital-learning implementation</li>
+              <li>Technology adoption</li>
+              <li>Knowledge support</li>
+              <li>Operational workflow redesign</li>
+              <li>Cross-functional stakeholder leadership</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         APPROACH
+    ======================================================= -->
+
+    <section class="section" id="approach">
+
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <div class="section-number">
+            How I Approach Enterprise Learning
+          </div>
+
+          <h2>
+            Learning strategy starts with the conditions people need to succeed.
+          </h2>
+
+        </div>
+
+        <div class="principles-grid">
+
+          <div class="principle">
+            <div class="principle-symbol">⌘</div>
+            <h3>Design for Scale</h3>
+            <p>
+              Build reusable systems that can expand across people, locations,
+              and delivery models.
+            </p>
+          </div>
+
+          <div class="principle">
+            <div class="principle-symbol">◎</div>
+            <h3>Start with the Need</h3>
+            <p>
+              Determine whether the right solution is learning, information,
+              workflow, technology, coaching, or a combination.
+            </p>
+          </div>
+
+          <div class="principle">
+            <div class="principle-symbol">⚖</div>
+            <h3>Balance Standards & Judgment</h3>
+            <p>
+              Create enough governance to protect quality without designing
+              systems people cannot realistically use.
+            </p>
+          </div>
+
+          <div class="principle">
+            <div class="principle-symbol">↗</div>
+            <h3>Support Adoption</h3>
+            <p>
+              Pair new systems and technology with guidance, learning,
+              communication, and support.
+            </p>
+          </div>
+
+          <div class="principle">
+            <div class="principle-symbol">◔</div>
+            <h3>Measure What Changes</h3>
+            <p>
+              Use performance information, learning outcomes, and feedback to
+              improve the system over time.
+            </p>
+          </div>
+
+          <div class="principle">
+            <div class="principle-symbol">✦</div>
+            <h3>Use Technology Intentionally</h3>
+            <p>
+              Adopt technology because it improves learning or performance,
+              not because the technology itself is new.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         PHILOSOPHY
+    ======================================================= -->
+
+    <section class="section philosophy">
+
+      <div class="wrap philosophy-grid">
+
+        <blockquote class="quote">
+          I believe people can learn when the right conditions are in place.
+        </blockquote>
+
+        <div>
+
+          <h2>
+            The strongest learning systems create those conditions.
+          </h2>
+
+          <p>
+            For me, that means designing experiences and systems that are
+            clear, accessible, practical, and connected to the work people
+            actually need to do.
+          </p>
+
+          <p>
+            The solution may be a course, a resource, a workflow, a platform,
+            a coaching structure, or a combination of those things. The goal
+            is not simply to deliver content. It is to help people learn,
+            apply what they know, and perform more effectively.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         EXPERTISE
+    ======================================================= -->
+
+    <section class="section" id="expertise">
+
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <div class="section-number">
+            Selected Areas of Expertise
+          </div>
+
+          <h2>
+            Learning leadership across strategy, design, systems, and adoption.
+          </h2>
+
+        </div>
+
+        <div class="expertise-list">
+
+          <span>Learning Strategy</span>
+          <span>Learning Solutions Design</span>
+          <span>Instructional Design</span>
+          <span>Learning Experience Design</span>
+          <span>Digital & Blended Learning</span>
+          <span>Scalable Learning Architecture</span>
+          <span>Learning Governance</span>
+          <span>Workforce Enablement</span>
+          <span>Performance Support</span>
+          <span>Knowledge Management</span>
+          <span>Accessibility & WCAG</span>
+          <span>Learning Measurement</span>
+          <span>Continuous Improvement</span>
+          <span>AI-Enabled Learning</span>
+          <span>LMS & Learning Technology</span>
+          <span>Technology Adoption</span>
+          <span>Cross-Functional Leadership</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         BOTTOM NAV
+    ======================================================= -->
+
+    <section class="bottom-nav">
+
+      <div class="wrap bottom-nav-inner">
+
+        <div>
+          <strong>Kristin Bartholomew, EdD, RDN</strong><br>
+          Enterprise Learning Strategy · Design · Innovation
+        </div>
+
+        <div>
+          <a href="index.html">
+            View Full Portfolio →
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="wrap">
+      Kristin Bartholomew, EdD, RDN · Enterprise Learning Technology & Innovation Portfolio
+    </div>
+
+  </footer>
+
+</body>
+</html>
