@@ -196,8 +196,38 @@ h1 .gold{display:block;color:var(--gold);font-style:italic}
 .footer{
   padding:20px 0 46px;text-align:center;color:var(--muted);font-size:.82rem
 }
+
+.story{
+  padding:30px;
+  background:linear-gradient(135deg,#fffdf8,#f5efe5);
+}
+.story-grid{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:start
+}
+.story h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:2rem;font-weight:600
+}
+.story .subgold{
+  color:var(--gold);font-style:italic;font-weight:700;margin:5px 0 12px
+}
+.story p{margin:0 0 12px;color:#4c4d48}
+.story-quote{
+  border-left:4px solid var(--gold);
+  padding:4px 0 4px 18px;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--ink);
+  font-size:1.18rem;
+  font-style:italic
+}
+.story-quote strong{
+  display:block;margin-top:10px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-style:normal;font-size:.78rem;color:var(--muted);letter-spacing:.05em
+}
+
 @media(max-width:900px){
-  .hero-grid,.mission-grid{grid-template-columns:1fr}
+  .hero-grid,.mission-grid,.story-grid{grid-template-columns:1fr}
   .metrics{grid-template-columns:1fr 1fr}
   .metric:nth-child(2){border-right:none}
   .metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -378,6 +408,41 @@ h1 .gold{display:block;color:var(--gold);font-style:italic}
         <a class="cta" href="https://kbartholomew12.github.io/academic-technology-learning-design/">View AI & Learning Technology Examples →</a>
       </article>
 
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="wrap">
+    <div class="panel story">
+      <div class="story-grid">
+        <div>
+          <h2>Why This Work Matters to Me</h2>
+          <div class="subgold">Access has always been more than a healthcare concept</div>
+          <p>
+            I grew up in small rural Nebraska communities where access to healthcare depended on a limited
+            number of hospitals and professionals serving large geographic areas. My father was a hospital
+            administrator in those communities, often at the only hospital in the county, and I saw firsthand
+            how difficult it could be to recruit physicians and other qualified professionals to rural areas.
+          </p>
+          <p>
+            I also saw dietitians and other healthcare professionals travel across multiple hospitals,
+            nursing homes, and counties because the workforce simply was not available locally. Near the end
+            of his career, my father helped develop a health center to expand access and meet community need.
+          </p>
+          <p>
+            Those early experiences shaped the way I understand workforce capacity, community health,
+            and access. My own career later brought those themes together through clinical nutrition,
+            health-sciences education, faculty and workforce development, and doctoral research focused on
+            food insecurity and barriers to student success.
+          </p>
+        </div>
+        <aside class="story-quote">
+          Strong systems matter because access depends on people being prepared, supported, and able to serve the communities that need them.
+          <strong>THE THROUGH-LINE IN MY WORK</strong>
+        </aside>
+      </div>
     </div>
   </div>
 </section>
